@@ -178,3 +178,6 @@ Genkaiのログインノードの所望のディレクトリで，リポジト�
 ```bash
 [ku{number}@genkai0001 projects]$ pjsub scripts/genkai/run.sh
 ```
+
+## 🌱 FYI: ローカルでDockerを用いた開発
+[ローカルでのDockerを用いた開発](./README-local.md)
