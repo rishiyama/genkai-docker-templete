@@ -1,16 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 #PJM -L rscgrp=b-batch
 #PJM -L gpu=1
-#PJM -L elapse=1:00:00
+#PJM -L elapse=0:10:00
+#PJM -L jobenv=singularity
 #PJM -j
 
-# dockerhub image
-
-DOCKER_IMAGE="ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0"
-
 module load cuda/11.8.0
-module load cudnn
-module load nccl
-module load gcc
-module load singularity-ce
+module load singularity-ce/4.1.3
+singularity exec ubuntu.sif bash inter.sh
