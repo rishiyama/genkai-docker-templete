@@ -26,7 +26,8 @@ Alternatively, you can use Docker to set up the environment:
    ```
    - `scripts/env.sh`: sets basic environment variables (UID/GID, .env)
 
-> [!TIPS]
+> [!TIP]
+>
 > **FYI**: Developer mode with SSH access for git operations:
 > ```bash
 > source scripts/activate.sh
