@@ -61,7 +61,7 @@ docker push ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0
 
 
 ## 🌊 Genkaiで利用する
-目標： 小規模な対話型ジョブで試す．(b-inter-mig)
+目標： 小規模なジョブで試す．(b-inter-mig)
 一次情報は[ここ](https://www.cc.kyushu-u.ac.jp/scp/system/Genkai/software/Singularity.html)から確認できます．
 
 ### 1. docker imageをsifに焼く
