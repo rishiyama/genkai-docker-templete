@@ -94,8 +94,8 @@ VERSION_CODENAME=focal
 UBUNTU_CODENAME=focal
 ```
 
-### 3. インタラクティブジョブ（計算ノード）で試行．
-> [!NOTE]
+### 3. インタラクティブジョブ（計算ノード）でsifイメージを検証．
+> [!IMPORTANT]
 > pjsubコマンドに対するオプションの追加（`jobenv=singularity`）が必要です．
 
 ```bash
@@ -156,11 +156,25 @@ uv 0.9.24
 （インタラクティブジョブは，`exit`で終了できます．）
 
 
-### pythonプログラムを実行する
+### 4. インタラクティブジョブ（計算ノード）で pythonプログラムを実行する
+Genkaiのログインノードの所望のディレクトリで，リポジトリをclone.
+```bash
+[ku{number}@genkai0001 projects]$ git clone https://github.com/rishiyama/genkai-docker-templete.git
+[ku{number}@genkai0001 projects]$ cd genkai-docker-templete
+```
+
 簡易的な実験．[scripts/genkai/inter.sh](./scripts/genkai/inter.sh)をインタラクティブノードで走らせます．
 ```bash
 [ku{number}@genkai0001 projects]$  pjsub --interact -L rscgrp=b-inter-mig,gpu=1,elapse=01:00:00,jobenv=singularity
 [ku{number}@b0030 projects]$ module load cuda/11.8.0
 [ku{number}@b0030 projects]$ module load singularity-ce/4.1.3
 [ku{number}@b0030 projects]$ singularity exec --nv ubuntu.sif bash scripts/genkai/inter.sh
+```
+
+### 5. バッチジョブ（計算ノード）に スクリプトを投げる
+> [!CAUTION]
+> このセクションは執筆中です．動くかもしれません．
+簡易的な実験．[scripts/genkai/run.sh](./scripts/genkai/run.sh)をバッチジョブとして投入します．
+```bash
+[ku{number}@genkai0001 projects]$ pjsub scripts/genkai/run.sh
 ```

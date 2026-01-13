@@ -8,4 +8,4 @@
 
 module load cuda/11.8.0
 module load singularity-ce/4.1.3
-singularity exec ubuntu.sif bash inter.sh
+singularity exec ubuntu.sif bash scripts/genkai/inter.sh
