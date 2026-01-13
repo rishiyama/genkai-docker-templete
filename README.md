@@ -34,7 +34,7 @@ docker build -t <dockerhubユーザー名>/<リポジトリ名>:<タグ> .
 例：
 
 ```bash
-docker build -t rish/ext-genkai:latest .
+docker build -t ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0 .
 ```
 
 
@@ -56,7 +56,7 @@ docker push <dockerhubユーザー名>/<リポジトリ名>:<タグ>
 例：
 
 ```bash
-docker push rish/ext-genkai:latest
+docker push ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0
 ```
 
 
