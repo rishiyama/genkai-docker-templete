@@ -3,6 +3,4 @@
 
 uv sync
 uv pip install -e .
-source .venv/bin/activate
-which python
-python scripts/train.py
+uv python scripts/train.py
