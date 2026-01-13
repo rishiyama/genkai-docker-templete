@@ -1,0 +1,29 @@
+services:
+  dev:
+    user: "${UID}:${GID}"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID}
+        GID: ${GID}
+        USER_NAME: dev
+    image: chrcmp 
+    container_name: my-container-dev
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - ~/.ssh/known_hosts:/home/dev/.ssh/known_hosts:ro
+      - ~/.ssh/config:/home/dev/.ssh/config:ro
+      - ~/.gitconfig:/home/dev/.gitconfig:ro
+    command: tail -f /dev/null
+    init: true
+    ports:
+      - "8890:8888"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
