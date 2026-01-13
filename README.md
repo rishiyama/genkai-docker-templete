@@ -64,7 +64,7 @@ docker push rish/ext-genkai:latest
 目標： 小規模な対話型ジョブで試す．(b-inter-mig)
 
 ### 1. docker imageをsifに焼く
-```
+```bash
 [ku{number}@genkai0001 projects]$ singularity build ubuntu.sif docker://ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0
 INFO:    Starting build...
 INFO:    Fetching OCI image...
@@ -76,7 +76,9 @@ INFO:    Extracting OCI image...
 INFO:    Inserting Singularity configuration...
 INFO:    Creating SIF file...
 INFO:    Build complete: ubuntu.sif
-
+```
+### 2. ログインノードでsifイメージからコマンドを叩く
+```bash
 [ku{number}@genkai0001 projects]$ singularity exec ubuntu.sif cat /etc/os-release
 NAME="Ubuntu"
 VERSION="20.04.6 LTS (Focal Fossa)"
@@ -92,7 +94,7 @@ VERSION_CODENAME=focal
 UBUNTU_CODENAME=focal
 ```
 
-### 2. インタラクティブジョブに入る．
+### 3. インタラクティブジョブ（計算ノード）で試行．
 > [!NOTE]
 > pjsubコマンドに対するオプションの追加（`jobenv=singularity`）が必要です．
 
@@ -106,7 +108,7 @@ UBUNTU_CODENAME=focal
 [ku{number}@b0030 projects]$ 
 ```
 
-### 3. 計算ノードでイメージを利用する
+gpuに関するモジュールをロードし，sifイメージから`nvidia-smi`を叩きます．
 ```bash
 [ku{number}@b0030 projects]$ module load cuda/11.8.0
 [ku{number}@b0030 projects]$ module load singularity-ce/4.1.3
@@ -142,11 +144,23 @@ Tue Jan 13 23:08:24 2026
 |=========================================================================================|
 |  No running processes found                                                             |
 +-----------------------------------------------------------------------------------------+
+```
+
+今回のイメージでは`uv`が利用できます．
+```bash
 [ku{number}@b0030 projects]$ singularity exec --nv ubuntu.sif uv -V
 uv 0.9.24
 ```
 
-以上より，nvidi-smiが通ることと，uvが操作できることが確認できました．
+以上より，`nvidi-smi`が通ることと，`uv`が操作できることが確認できました．
+（インタラクティブジョブは，`exit`で終了できます．）
 
 
 ### pythonプログラムを実行する
+簡易的な実験．[scripts/genkai/inter.sh](./scripts/genkai/inter.sh)をインタラクティブノードで走らせます．
+```bash
+[ku{number}@genkai0001 projects]$  pjsub --interact -L rscgrp=b-inter-mig,gpu=1,elapse=01:00:00,jobenv=singularity
+[ku{number}@b0030 projects]$ module load cuda/11.8.0
+[ku{number}@b0030 projects]$ module load singularity-ce/4.1.3
+[ku{number}@b0030 projects]$ singularity exec --nv ubuntu.sif bash scripts/genkai/inter.sh
+```
