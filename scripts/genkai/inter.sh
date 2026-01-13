@@ -3,4 +3,4 @@
 
 uv sync
 uv pip install -e .
-uv python scripts/train.py
+uv run python scripts/train.py
