@@ -8,8 +8,6 @@ dependencies = [
   "transformers",
   "wandb<0.23",
   "natsort",
-  "tensorflow==2.9.0",
-  "tensorflow-model-optimization",
   "cairosvg",
   "requests",
   "urllib3",
