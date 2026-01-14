@@ -173,12 +173,32 @@ Genkaiのログインノードの所望のディレクトリで，リポジト�
 ```
 
 ### 5. バッチジョブ（計算ノード）に スクリプトを投げる
-> [!CAUTION]
-> このセクションは執筆中です．動くかもしれません．
 簡易的な実験．[scripts/genkai/run.sh](./scripts/genkai/run.sh)をバッチジョブとして投入します．
 ```bash
-[ku{number}@genkai0001 projects]$ pjsub scripts/genkai/run.sh
+[ku{number}@genkai0001 genkai-docker-templete]$ pjsub scripts/genkai/run.sh
 ```
+ジョブが完了すると，以下のように`.out`ファイルが作成されます．
+```bash
+[ku{number}@genkai0001 genkai-docker-templete]$ ls
+compose.ssh.yaml  Dockerfile  notebooks       README-local.md     run.sh.4968857.out  ubuntu.sif
+compose.yaml      docs        output          README.md           scripts             uv.lock
+configs           LICENSE     pyproject.toml  src
+```
+このファイルには，投入したジョブの標準出力が記録されています．
+```bash
+[ku{number}@genkai0001 genkai-docker-templete]$ cat run.sh.4968857.out
+Resolved 141 packages in 280ms
+Audited 139 packages in 117ms
+...
+Epochs:  20%|██        | 1/5 [00:02<00:11,  2.88s/it]Saved best model with val loss 12878.4418 at epoch 1
+Epochs:  40%|████      | 2/5 [00:03<00:04,  1.58s/it]Saved best model with val loss 10853.2070 at epoch 2
+Epochs:  60%|██████    | 3/5 [00:04<00:02,  1.16s/it]Saved best model with val loss 10194.9710 at epoch 3
+Epochs:  80%|████████  | 4/5 [00:04<00:00,  1.02it/s]Saved best model with val loss 7866.1429 at epoch 4
+Epochs: 100%|██████████| 5/5 [00:05<00:00,  1.11s/it]
+Saved best model with val loss 6966.0814 at epoch 5
+```
+
+以上より，Pythonプログラムを実行するジョブの操作を確認できました．
 
 ## 🌱 FYI: ローカルでDockerを用いた開発
 [ローカルでのDockerを用いた開発](./README-local.md)
