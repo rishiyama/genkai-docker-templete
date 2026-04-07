@@ -9,7 +9,7 @@ services:
         GID: ${GID}
         USER_NAME: dev
     image: hflab-ml-cu128-uv112:1.0
-    container_name: lab-ml-dev-${USER}
+    container_name: lab-cu128-dev-${USER}
     working_dir: /workspace
     volumes:
       - .:/workspace
