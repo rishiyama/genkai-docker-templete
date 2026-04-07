@@ -34,7 +34,7 @@ docker build -t <dockerhubユーザー名>/<リポジトリ名>:<タグ> .
 例：
 
 ```bash
-docker build -t ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0 .
+docker build -t ishiyamaryo/hflab-ml-cu128-uv112:1.0 .
 ```
 
 
@@ -56,7 +56,7 @@ docker push <dockerhubユーザー名>/<リポジトリ名>:<タグ>
 例：
 
 ```bash
-docker push ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0
+docker push ishiyamaryo/hflab-ml-cu128-uv112:1.0
 ```
 
 
@@ -66,7 +66,7 @@ docker push ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0
 
 ### 1. docker imageをsifに焼く
 ```bash
-[ku{number}@genkai0001 projects]$ singularity build ubuntu.sif docker://ishiyamaryo/cuda11.8.0-ubuntu22.04-uv:v1.0
+[ku{number}@genkai0001 projects]$ singularity build ubuntu.sif docker://ishiyamaryo/hflab-ml-cu128-uv112:1.0
 INFO:    Starting build...
 INFO:    Fetching OCI image...
 21.8MiB / 21.8MiB [==============================================================================================================] 100 % 0.0 b/s 0s
