@@ -6,7 +6,7 @@ dependencies = [
   "numpy==1.26.4",
   "scipy==1.15.3",
   "transformers==4.57.1",
-  "wandb==0.22.1",
+  "wandb>=0.22.3",
   "natsort==8.4.0",
   "cairosvg==2.8.2",
   "requests==2.32.5",
